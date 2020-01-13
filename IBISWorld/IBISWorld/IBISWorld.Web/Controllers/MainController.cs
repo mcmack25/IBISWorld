@@ -7,29 +7,28 @@ using System.Web.Mvc;
 
 namespace IBISWorld.Web.Controllers
 {
-
-    //[RoutePrefix("api/home")]
-    public class HomeController : Controller
+    [RoutePrefix("api/main")]
+    public class MainController : Controller
     {
 
-       private readonly IGlossaryService _glossarySvc;
+        private readonly IGlossaryService _glossarySvc;
 
-        //public HomeController(){}
+        //public MainController() { }
 
-        public HomeController(IGlossaryService glossarySvc)
+        public MainController(IGlossaryService glossarySvc)
         {
             _glossarySvc = glossarySvc;
         }
 
         // GET: Home
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
-        [Route("api/home/GetTerms")]
+        [Route("terms/{id}")]
         [HttpGet]
-        public JsonResult GetAllTerms()
+        public JsonResult GetAllTerms(int id)
         {
 
             var termsList = _glossarySvc.GetTerms();
@@ -38,21 +37,18 @@ namespace IBISWorld.Web.Controllers
             return Json(termsList, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("api/home/GetTerm/{id}")]
+        [Route("GetTerm/{id}")]
         [HttpGet]
         public JsonResult GetTermByID(int id)
         {
-            var term = _glossarySvc.GetTermByID(id);
 
-            return Json(term, JsonRequestBehavior.AllowGet);
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         [Route("AddTerm/{id}")]
         [HttpPost]
         public JsonResult AddTermToGlossary(int id)
         {
-            //var term = _glossarySvc.GetTermByID(id);
-
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -61,7 +57,6 @@ namespace IBISWorld.Web.Controllers
         [HttpPut]
         public JsonResult EditTermByID(int id)
         {
-            //var term = _glossarySvc.GetTermByID(id);
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -70,10 +65,13 @@ namespace IBISWorld.Web.Controllers
         [HttpGet]
         public JsonResult DeleteTermByID(int id)
         {
-            //var term = _glossarySvc.GetTermByID(id);
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+
+
+
 
     }
 }

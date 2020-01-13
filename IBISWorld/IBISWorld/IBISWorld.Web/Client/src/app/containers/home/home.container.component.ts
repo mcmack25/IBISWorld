@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeStoreService } from '../../services/home-store.service'
 
 @Component({
   selector: 'home-container',
@@ -7,12 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeContainer implements OnInit {
 
-    cars: any[];
+
+    constructor(private homeStore: HomeStoreService) { }
+
+    ngOnInit() {
+
+        //this.homeStore.GetAllTerms();
+    }
 
 
-    constructor() { }
+    handleClick() {
 
-  ngOnInit() {
-  }
+        console.log("Clickity Click");
+    }
+
 
 }

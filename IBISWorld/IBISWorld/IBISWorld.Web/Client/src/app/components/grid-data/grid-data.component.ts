@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,OnChanges } from '@angular/core';
+import { TermModel } from '../../models/terms-model';
 
 @Component({
   selector: 'grid-data',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GridDataComponent implements OnInit {
 
+    @Input() terms: any[];
+
   constructor() { }
 
 
@@ -14,12 +17,22 @@ export class GridDataComponent implements OnInit {
 
     ngOnInit() {
 
+       
+
         this.cols = [
-            { field: 'term', header: 'Term' },
-            { field: 'definition', header: 'Definition' },
-            { field: 'dateAdded', header: 'DateAdded' }
+            { field: 'Term', header: 'Term' },
+            { field: 'Definition', header: 'Definition' },
+            { field: 'DateAdded', header: 'DateAdded' }
         ];
 
-  }
+    }
+
+
+
+    ngOnChanges() {
+
+        console.log("On Changes terms: ", this.terms);
+
+    }
 
 }

@@ -1,4 +1,11 @@
-<p-table [columns]="cols" [value]="cars">
+<!--<ngx-loading [show]="runStore.loading$ | async" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>-->
+<p-table #table
+         [columns]="cols"
+         [value]="terms"
+         [paginator]="true"
+         [rows]="10"
+         [autoLayout]="true"
+         >
   <ng-template pTemplate="caption">
     Glossary
   </ng-template>
@@ -23,7 +30,5 @@
       </td>
     </tr>
   </ng-template>
-  <!--<ng-template pTemplate="summary">
-    There are {{cars?.length}} cars
-  </ng-template>-->
+
 </p-table>

@@ -11,13 +11,12 @@ namespace IBISWorld.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
             routes.MapMvcAttributeRoutes();
 
             var routeNames = new List<string>()
             {
                 "Home",
+                "Main"
             };
 
             foreach (string name in routeNames)
@@ -29,10 +28,12 @@ namespace IBISWorld.Web
                 );
             }
 
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
             routes.MapRoute(
                 name: "Default",
                 url: "{*url}",
-                defaults: new { controller = "Home", action = "Index" }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
         }

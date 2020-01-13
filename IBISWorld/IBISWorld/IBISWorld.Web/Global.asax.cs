@@ -7,6 +7,8 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using System.Composition;
+using System.Web.Http.Dependencies;
 
 namespace IBISWorld.Web
 {
@@ -16,8 +18,11 @@ namespace IBISWorld.Web
         {
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            UnityConfig.RegisterComponents();
+
         }
     }
 }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { GridDataComponent } from './components/grid-data/grid-data.component';
 import { HomeContainerModule } from './containers/home/home.container.module';
+import { HomeStoreService } from '../app/services/home-store.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { HomeContainerModule } from './containers/home/home.container.module';
     routing,
     HomeContainerModule
   ],
-  providers: [],
+    providers: [HomeStoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
