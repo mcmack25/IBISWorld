@@ -17,8 +17,7 @@ export class GridDataComponent implements OnInit {
         this.cols = [
             { field: 'term', header: 'Term' },
             { field: 'definition', header: 'Definition' },
-            { field: 'dateAdded', header: 'DateAdded' },
-            { field: 'image', header: 'Image' }
+            { field: 'dateAdded', header: 'DateAdded' }
         ];
 
   }
