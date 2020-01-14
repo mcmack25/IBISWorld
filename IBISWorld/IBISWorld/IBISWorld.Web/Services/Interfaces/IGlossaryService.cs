@@ -12,8 +12,11 @@ namespace IBISWorld.Web.Services.Interfaces
         IEnumerable<TermModel> GetTerms();
         TermModel GetTermByID(int deviceID);
 
-        //int AddTerm(TermModel sensor);
-        //DeleteTerm(int termID);
-        //EditTerm(int termID);
+        int AddTerm(TermModel sensor);
+
+        void EditTerm(TermModel sensor);
+
+        void DeleteTerm(int termID);
+
     }
 }

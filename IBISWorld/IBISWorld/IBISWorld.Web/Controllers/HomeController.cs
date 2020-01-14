@@ -1,4 +1,5 @@
-﻿using IBISWorld.Web.Services.Interfaces;
+﻿using IBISWorld.Web.Models;
+using IBISWorld.Web.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,21 +48,21 @@ namespace IBISWorld.Web.Controllers
             return Json(term, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("AddTerm/{id}")]
+        [Route("api/home/AddTerm")]
         [HttpPost]
-        public JsonResult AddTermToGlossary(int id)
+        public JsonResult AddTermToGlossary(TermModel newTerm)
         {
-            //var term = _glossarySvc.GetTermByID(id);
 
+            var term = _glossarySvc.AddTerm(newTerm);
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("EditTerms/{id}")]
+        [Route("api/home/EditTerm")]
         [HttpPut]
-        public JsonResult EditTermByID(int id)
+        public JsonResult EditTerm(TermModel editTerm)
         {
-            //var term = _glossarySvc.GetTermByID(id);
+            _glossarySvc.EditTerm(editTerm);
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -70,7 +71,7 @@ namespace IBISWorld.Web.Controllers
         [HttpGet]
         public JsonResult DeleteTermByID(int id)
         {
-            //var term = _glossarySvc.GetTermByID(id);
+             _glossarySvc.GetTermByID(id);
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }

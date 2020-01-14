@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { GridDataComponent } from './grid-data.component';
 
+import { LoadingModule } from 'ngx-loading';
+
 
 
 @NgModule({
   imports: [
       CommonModule,
-      TableModule
+        TableModule,
+        LoadingModule
     ],
 
     declarations: [GridDataComponent],

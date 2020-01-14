@@ -1,5 +1,7 @@
-import { Component, OnInit, Input,OnChanges } from '@angular/core';
+import { Component, OnInit, Input,OnChanges, EventEmitter, Output } from '@angular/core';
 import { TermModel } from '../../models/terms-model';
+import { HomeStoreService } from '../../services/home-store.service';
+
 
 @Component({
   selector: 'grid-data',
@@ -8,10 +10,15 @@ import { TermModel } from '../../models/terms-model';
 })
 export class GridDataComponent implements OnInit {
 
-    @Input() terms: any[];
+    @Input() glossary: any[];
 
-  constructor() { }
+    @Output()
+    gridSelect: EventEmitter<any> = new EventEmitter();
 
+
+    selectedTerm: TermModel = new TermModel();
+
+    constructor(private homeStore: HomeStoreService) { }
 
     cols: any[];
 
@@ -31,8 +38,12 @@ export class GridDataComponent implements OnInit {
 
     ngOnChanges() {
 
-        console.log("On Changes terms: ", this.terms);
+        console.log("On Changes terms: ", this.glossary);
 
+    }
+
+    onGridSelect() {
+        this.gridSelect.emit(this.selectedTerm);
     }
 
 }

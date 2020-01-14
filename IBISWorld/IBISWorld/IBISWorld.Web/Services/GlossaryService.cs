@@ -143,14 +143,20 @@ namespace IBISWorld.Web.Services
 
                 List<SqlParameter> parameters = new List<SqlParameter>();
 
-                parameters.Add(new SqlParameter("@Username", termObj.Term));
-                parameters.Add(new SqlParameter("@Password", termObj.Definition));
+                parameters.Add(new SqlParameter("@Term", termObj.Term));
+                parameters.Add(new SqlParameter("@Definition", termObj.Definition));
+
+               var outputIdParam = new SqlParameter("@RowID", SqlDbType.Int) { Direction = ParameterDirection.Output };
+
+                parameters.Add(outputIdParam);
 
                 sqlCMD.Parameters.AddRange(parameters.ToArray());
 
                 sqlCMD.Connection = SqlConn;
 
-                newTermID = (int)sqlCMD.ExecuteScalar(); 
+               sqlCMD.ExecuteNonQuery();
+
+                newTermID = (int)outputIdParam.Value;
 
             }
 
@@ -205,7 +211,7 @@ namespace IBISWorld.Web.Services
         }
 
 
-        public int EditTerm(TermModel termObj)
+        public void EditTerm(TermModel termObj)
         {
             string storedProName = "Edit_Term_To_Glossary";
 
@@ -215,7 +221,7 @@ namespace IBISWorld.Web.Services
 
             IEnumerable<TermModel> term = null;
 
-            var editTermID = 0;
+            //var editTermID = 0;
 
             try
             {
@@ -231,14 +237,15 @@ namespace IBISWorld.Web.Services
 
                 List<SqlParameter> parameters = new List<SqlParameter>();
 
-                parameters.Add(new SqlParameter("@", termObj.Term));
-                parameters.Add(new SqlParameter("@", termObj.Definition));
+                parameters.Add(new SqlParameter("@ID", termObj.ID));
+                parameters.Add(new SqlParameter("@Term", termObj.Term));
+                parameters.Add(new SqlParameter("@Definition", termObj.Definition));       
 
                 sqlCMD.Parameters.AddRange(parameters.ToArray());
 
                 sqlCMD.Connection = SqlConn;
 
-                editTermID = (int)sqlCMD.ExecuteScalar();
+                sqlCMD.ExecuteNonQuery();
 
             }
 
@@ -252,8 +259,6 @@ namespace IBISWorld.Web.Services
             {
                 SqlConn.Close();
             }
-
-            return editTermID;
         }
 
 
@@ -273,7 +278,7 @@ namespace IBISWorld.Web.Services
                     term.ID = Convert.ToInt32(reader["ID"]);
                     term.Term = reader["Term"].ToString();
                     term.Definition = reader["Definition"].ToString();
-
+                    term.DateAdded = reader["DateAdded"].ToString();
 
                     termList.Add(term);
 

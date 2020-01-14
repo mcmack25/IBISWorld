@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from "rxjs";
 import { TermModel } from '../models/terms-model';
 
+import * as moment from 'moment';
+
 
 
 
@@ -16,7 +18,7 @@ export class HomeStoreService {
 
     loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-    terms$: BehaviorSubject<any[]> = new BehaviorSubject([]);
+    terms$: BehaviorSubject<any[]> = new BehaviorSubject(new Array() );
 
 
     GetAllTerms()
@@ -24,9 +26,13 @@ export class HomeStoreService {
         this.loading$.next(true);
 
         this.http.get(`api/home/GetTerms`)
-            .subscribe((terms: any) => {
+            .subscribe((terms: any[]) => {
 
-                console.log("Terms are here: ", terms);
+                for (let term of terms) {
+                    term.DateAdded = moment.utc(term.DateAdded).format("MM-DD-YYYY");
+                }
+
+                this.terms$.next(terms);
             },
                 (error: Response) => {
                     console.log(error);
@@ -52,10 +58,10 @@ export class HomeStoreService {
     }
 
 
-    EditTermByID() {
+    EditTerm(editTerm: TermModel) {
         this.loading$.next(true);
 
-        this.http.get(`api/home/terms`)
+        this.http.put(`api/home/EditTerm`, editTerm )
             .subscribe((terms: any) => {
 
                 console.log("Terms are here: ", terms);
@@ -67,15 +73,17 @@ export class HomeStoreService {
             );
     }
 
-    AddTerm() {
+    AddTerm(newTerm: TermModel) {
+
+        console.log("In the Service: ", newTerm);
 
         this.loading$.next(true);
 
 
-        this.http.get(`api/home/terms`)
+        this.http.post(`api/home/AddTerm`, newTerm)
             .subscribe((terms: any) => {
 
-                console.log("Terms are here: ", terms);
+                this.GetAllTerms();
             },
                 (error: Response) => {
                     console.log(error);
@@ -86,15 +94,14 @@ export class HomeStoreService {
     }
 
 
-    DeleteTerm() {
+    DeleteTerm(id: number) {
 
         this.loading$.next(true);
-        //this.error$.next(new Error());
 
-        this.http.get(`api/home/terms`)
+        this.http.get(`api/home/DeleteTerm/${id}`)
             .subscribe((terms: any) => {
 
-                console.log("Terms are here: ", terms);
+                this.GetAllTerms();
             },
                 (error: Response) => {
                     console.log(error);

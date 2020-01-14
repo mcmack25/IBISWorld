@@ -124,24 +124,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\dist\myapp\favicon.ico" />
-    <Content Include="Client\dist\myapp\index.html" />
-    <Content Include="Client\dist\myapp\main.js" />
-    <Content Include="Client\dist\myapp\polyfills.js" />
-    <Content Include="Client\dist\myapp\runtime.js" />
-    <Content Include="Client\dist\myapp\styles.js" />
-    <Content Include="Client\dist\myapp\vendor.js" />
-    <Content Include="Client\dist\out-tsc\e2e\src\app.e2e-spec.js" />
-    <Content Include="Client\dist\out-tsc\e2e\src\app.po.js" />
-    <Content Include="Client\dist\out-tsc\src\app\app-routing.module.js" />
-    <Content Include="Client\dist\out-tsc\src\app\app.component.js" />
-    <Content Include="Client\dist\out-tsc\src\app\app.component.spec.js" />
-    <Content Include="Client\dist\out-tsc\src\app\app.module.js" />
-    <Content Include="Client\dist\out-tsc\src\environments\environment.js" />
-    <Content Include="Client\dist\out-tsc\src\environments\environment.prod.js" />
-    <Content Include="Client\dist\out-tsc\src\main.js" />
-    <Content Include="Client\dist\out-tsc\src\polyfills.js" />
-    <Content Include="Client\dist\out-tsc\src\test.js" />
     <Content Include="Client\e2e\protractor.conf.js" />
     <Content Include="Client\karma.conf.js" />
     <Content Include="Client\src\app\app.component.css" />
@@ -186,22 +168,6 @@
     <Content Include="Client\tsconfig.json" />
     <Content Include="Client\tsconfig.spec.json" />
     <Content Include="Client\tslint.json" />
-    <Content Include="Client\dist\myapp\main.js.map" />
-    <Content Include="Client\dist\myapp\polyfills.js.map" />
-    <Content Include="Client\dist\myapp\runtime.js.map" />
-    <Content Include="Client\dist\myapp\styles.js.map" />
-    <Content Include="Client\dist\myapp\vendor.js.map" />
-    <Content Include="Client\dist\out-tsc\e2e\src\app.e2e-spec.js.map" />
-    <Content Include="Client\dist\out-tsc\e2e\src\app.po.js.map" />
-    <Content Include="Client\dist\out-tsc\src\app\app-routing.module.js.map" />
-    <Content Include="Client\dist\out-tsc\src\app\app.component.js.map" />
-    <Content Include="Client\dist\out-tsc\src\app\app.component.spec.js.map" />
-    <Content Include="Client\dist\out-tsc\src\app\app.module.js.map" />
-    <Content Include="Client\dist\out-tsc\src\environments\environment.js.map" />
-    <Content Include="Client\dist\out-tsc\src\environments\environment.prod.js.map" />
-    <Content Include="Client\dist\out-tsc\src\main.js.map" />
-    <Content Include="Client\dist\out-tsc\src\polyfills.js.map" />
-    <Content Include="Client\dist\out-tsc\src\test.js.map" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
